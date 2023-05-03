@@ -16,14 +16,14 @@
  * @package block-governance-examples
  */
 
- /**
+namespace BlockGovernanceExamples;
+
+/**
  * Enqueue plugin specific editor scripts
  *
- * @since 1.0.0
+ * @since 0.1.0
  */
-function enqueue_bge_editor_scripts() {
-
-	// Scripts.
+function enqueue_editor_scripts() {
 	$asset_file = get_asset_file( 'build/index' );
 
 	wp_enqueue_script(
@@ -33,14 +33,14 @@ function enqueue_bge_editor_scripts() {
 		$asset_file['version']
 	);
 }
-add_action( 'enqueue_block_editor_assets', 'enqueue_bge_editor_scripts' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_editor_scripts' );
 
 
 /**
  * Loads the asset file for the given script or style.
  * Returns a default if the asset file is not found.
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @param string $filepath The name of the file without the extension.
  * @return array           The asset file contents.
