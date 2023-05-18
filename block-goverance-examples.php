@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:         Block Governance Examples
+ * Plugin Name:         Block Curation Examples
  * Plugin URI:          
- * Description:         A collection of block governance examples.
+ * Description:         A collection of block curation examples.
  * Version:             0.1.0
  * Requires at least:   6.2
  * Requires PHP:        7.0
@@ -10,13 +10,13 @@
  * Author URI:          https://www.nickdiego.com
  * License:             GPLv2
  * License URI:         https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- * Text Domain:         block-governance-examples
+ * Text Domain:         block-curation-examples
  * Domain Path:         /languages
  *
- * @package block-governance-examples
+ * @package block-curation-examples
  */
 
-namespace BlockGovernanceExamples;
+namespace BlockCurationExamples;
 
 /**
  * Enqueue plugin specific editor scripts

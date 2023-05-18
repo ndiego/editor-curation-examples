@@ -72,7 +72,7 @@ function restrictHeadingBlockSettings(
 
 addFilter(
 	'blockEditor.useSetting.before',
-	'block-goverance-examples/useSetting.before/heading-typography',
+	'block-curation-examples/useSetting.before/heading-typography',
 	restrictHeadingBlockSettings
 );
 
@@ -128,7 +128,7 @@ function restrictBlockSettingsByUserPermissionAndPostType(
 
 addFilter(
 	'blockEditor.useSetting.before',
-	'block-goverance-examples/useSetting.before/user-permissions-and-post-type',
+	'block-curation-examples/useSetting.before/user-permissions-and-post-type',
 	restrictBlockSettingsByUserPermissionAndPostType
 );
 
@@ -190,6 +190,6 @@ function restrictButtonBlockSettingsByLocation(
 
 addFilter(
 	'blockEditor.useSetting.before',
-	'block-goverance-examples/useSetting.before/button-location',
+	'block-curation-examples/useSetting.before/button-location',
 	restrictButtonBlockSettingsByLocation
 );
