@@ -2,16 +2,43 @@ import { select } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
 
 /**
+ * Restrict the spacing options for Column blocks to pixels.
+ *
+ * @param {any}    settingValue The current value of the block setting.
+ * @param {string} settingName  The name of the block setting to modify.
+ * @param {string} clientId     The unique identifier for the block in the client.
+ * @param {string} blockName    The name of the block type.
+ * @return {any} Returns the modified setting value or the original setting value.
+ */
+function restrictColumnSpacingSettings(
+	settingValue,
+	settingName,
+	clientId,
+	blockName
+) {
+	if ( blockName === 'core/column' && settingName === 'spacing.units' ) {
+		return [ 'px' ];
+	}
+	return settingValue;
+}
+
+addFilter(
+    'blockEditor.useSetting.before',
+    'block-curation-examples/useSetting.before/column-spacing',
+	restrictColumnSpacingSettings
+);
+
+/**
  * If a 'core/heading' is an H3-H6, disable most typography settings and
  * restrict the available font sizes.
  *
  * @param {any}    settingValue The current value of the block setting.
  * @param {string} settingName  The name of the block setting to modify.
- * @param {string} clientId     The unique identifier for the block.
+ * @param {string} clientId     The unique identifier for the block in the client.
  * @param {string} blockName    The name of the block type.
  * @return {any} Returns the modified setting value or the original setting value.
  */
-function restrictHeadingBlockSettings(
+function restrictHeadingTypographySettings(
 	settingValue,
 	settingName,
 	clientId,
@@ -20,7 +47,7 @@ function restrictHeadingBlockSettings(
 	if ( blockName === 'core/heading' ) {
 		const { getBlockAttributes } = select( 'core/block-editor' );
 
-		// Determine the level of the 'core/heading' block.
+		// Determine the level of the block based on its client id.
 		const headingLevel = getBlockAttributes( clientId )?.level ?? 0;
 
 		// Modify these block settings.
@@ -73,7 +100,7 @@ function restrictHeadingBlockSettings(
 addFilter(
 	'blockEditor.useSetting.before',
 	'block-curation-examples/useSetting.before/heading-typography',
-	restrictHeadingBlockSettings
+	restrictHeadingTypographySettings
 );
 
 /**
@@ -83,11 +110,11 @@ addFilter(
  *
  * @param {any}    settingValue The current value of the block setting.
  * @param {string} settingName  The name of the block setting to modify.
- * @param {string} clientId     The unique identifier for the block.
+ * @param {string} clientId     The unique identifier for the block in the client.
  * @param {string} blockName    The name of the block type.
  * @return {any} Returns the modified setting value or the original setting value.
  */
-function restrictBlockSettingsByUserPermissionAndPostType(
+function restrictBlockSettingsByUserPermissionsAndPostType(
 	settingValue,
 	settingName,
 	clientId,
@@ -96,9 +123,15 @@ function restrictBlockSettingsByUserPermissionAndPostType(
 	const { canUser } = select( 'core' );
 	const { getCurrentPostType } = select( 'core/editor' );
 
-	// Check user permission and get the current post type.
+	// Check user permissions and get the current post type.
 	const canUserUpdateSettings = canUser( 'update', 'settings' );
 	const currentPostType = getCurrentPostType();
+
+	// Disable block settings on these post types.
+	const disabledPostTypes = [
+		'post',
+		// Add additional post types here.
+	];
 
 	// Disable these block settings.
 	const disabledBlockSettings = [
@@ -107,12 +140,6 @@ function restrictBlockSettingsByUserPermissionAndPostType(
 		'border.style',
 		'border.width',
 		// Add additional block settings here.
-	];
-
-	// Disable block settings on these post types.
-	const disabledPostTypes = [
-		'post',
-		// Add additional post types here.
 	];
 
 	if (
@@ -129,7 +156,7 @@ function restrictBlockSettingsByUserPermissionAndPostType(
 addFilter(
 	'blockEditor.useSetting.before',
 	'block-curation-examples/useSetting.before/user-permissions-and-post-type',
-	restrictBlockSettingsByUserPermissionAndPostType
+	restrictBlockSettingsByUserPermissionsAndPostType
 );
 
 /**
@@ -139,7 +166,7 @@ addFilter(
  *
  * @param {any}    settingValue The current value of the block setting.
  * @param {string} settingName  The name of the block setting to modify.
- * @param {string} clientId     The unique identifier for the block.
+ * @param {string} clientId     The unique identifier for the block in the client.
  * @param {string} blockName    The name of the block type.
  * @return {any} Returns the modified setting value or the original setting value.
  */
