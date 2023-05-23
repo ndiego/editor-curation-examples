@@ -1,7 +1,5 @@
 # Block Curation Examples
 
-🚧 **Work in Progress** 🚧
-
 A collection of block curation examples for WordPress.
 
 ## Development
