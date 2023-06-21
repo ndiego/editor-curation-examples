@@ -24,7 +24,7 @@ function restrictColumnSpacingSettings(
 
 addFilter(
     'blockEditor.useSetting.before',
-    'block-curation-examples/useSetting.before/column-spacing',
+    'editor-curation-examples/useSetting.before/column-spacing',
 	restrictColumnSpacingSettings
 );
 
@@ -99,7 +99,7 @@ function restrictHeadingTypographySettings(
 
 addFilter(
 	'blockEditor.useSetting.before',
-	'block-curation-examples/useSetting.before/heading-typography',
+	'editor-curation-examples/useSetting.before/heading-typography',
 	restrictHeadingTypographySettings
 );
 
@@ -155,7 +155,7 @@ function restrictBlockSettingsByUserPermissionsAndPostType(
 
 addFilter(
 	'blockEditor.useSetting.before',
-	'block-curation-examples/useSetting.before/user-permissions-and-post-type',
+	'editor-curation-examples/useSetting.before/user-permissions-and-post-type',
 	restrictBlockSettingsByUserPermissionsAndPostType
 );
 
@@ -217,6 +217,6 @@ function restrictButtonBlockSettingsByLocation(
 
 addFilter(
 	'blockEditor.useSetting.before',
-	'block-curation-examples/useSetting.before/button-location',
+	'editor-curation-examples/useSetting.before/button-location',
 	restrictButtonBlockSettingsByLocation
 );

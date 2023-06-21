@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:         Block Curation Examples
+ * Plugin Name:         Editor Curation Examples
  * Plugin URI:          
- * Description:         A collection of block curation examples.
+ * Description:         A collection of Editor curation examples.
  * Version:             0.1.0
  * Requires at least:   6.2
  * Requires PHP:        7.0
@@ -10,13 +10,13 @@
  * Author URI:          https://www.nickdiego.com
  * License:             GPLv2
  * License URI:         https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- * Text Domain:         block-curation-examples
+ * Text Domain:         editor-curation-examples
  * Domain Path:         /languages
  *
- * @package block-curation-examples
+ * @package editor-curation-examples
  */
 
-namespace BlockCurationExamples;
+namespace EditorCurationExamples;
 
 /**
  * Enqueue plugin specific editor scripts
@@ -27,7 +27,7 @@ function enqueue_editor_scripts() {
 	$asset_file = get_asset_file( 'build/index' );
 
 	wp_enqueue_script(
-		'block-governance-examples-scripts',
+		'editor-curation-examples-scripts',
 		plugin_dir_url( __FILE__ ) . '/build/index.js',
 		$asset_file['dependencies'],
 		$asset_file['version']
@@ -55,3 +55,5 @@ function get_asset_file( $filepath ) {
 			'version'      => get_plugin_date( __FILE__, 'version' ),
 		);
 }
+
+include_once( plugin_dir_path( __FILE__ ) . 'inc/server-side-filters/wp-theme-json-data-theme.php' );
