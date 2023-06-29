@@ -57,3 +57,4 @@ function get_asset_file( $filepath ) {
 }
 
 include_once( plugin_dir_path( __FILE__ ) . 'inc/server-side-filters/wp-theme-json-data-theme.php' );
+include_once( plugin_dir_path( __FILE__ ) . 'inc/server-side-filters/wp-theme-json-data-user.php' );
