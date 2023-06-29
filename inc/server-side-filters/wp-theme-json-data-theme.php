@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This function modifies the theme JSON data by updating the theme's color palette
  * based on the user's login status.
@@ -7,13 +6,13 @@
  * @param object $theme_json The original theme JSON data.
  * @return object The modified theme JSON data.
  */
-function modify_color_palette_if_logged_in( $theme_json ){
+function modify_color_palette_if_logged_in( $theme_json ) {
 	if ( is_user_logged_in() ) {
 		$new_data = array(
 			'version'  => 2,
 			'settings' => array(
 				'color' => array(
-					'palette'    => array(
+					'palette' => array(
 						array(
 							'color' => '#ffffff',
 							'name'  => __( 'Base' ),
@@ -42,18 +41,18 @@ function modify_color_palette_if_logged_in( $theme_json ){
 					),
 				),
 			),
-			'styles' => array(
+			'styles'  => array(
 				'elements' => array(
 					'button' => array(
 						'color' => array(
 							'background' => 'var(--wp--preset--color--primary)',
-							'text' => 'var(--wp--preset--color--base)',
-						)
-					)
-				)
-			)
+							'text'       => 'var(--wp--preset--color--base)',
+						),
+					),
+				),
+			),
 		);
-		
+
 		// Return the modified theme JSON data.
 		return $theme_json->update_with( $new_data );
 	}

@@ -2,50 +2,50 @@
 
 /**
  * This function modifies the theme JSON data disabling all color settings
- * and then renabling settings for Administrators.
+ * and then enabling settings for Administrators.
  *
  * @param object $theme_json The original theme JSON data.
  * @return object The modified theme JSON data.
  */
-function enable_color_settings_for_administrators( $theme_json ){
+function enable_color_settings_for_administrators( $theme_json ) {
+    
+	// First disable color settings for everyone.
+	// This will override any theme settings.
+	$default_settings = array(
+		'version'  => 2,
+		'settings' => array(
+			'color' => array(
+				'text'       => false,
+				'background' => false,
+				'link'       => false,
+			),
+		),
+	);
 
-    // First disable color settings for everyone. 
-    // This will override any theme settings.
-    $default_settings = array(
-        'version'  => 2,
-        'settings' => array(
-            'color' => array(
-                'text'       => false,
-                'background' => false,
-                'link'       => false,
-            ),
-        ),
-    );
+	$theme_json->update_with( $default_settings );
 
-    $theme_json->update_with( $default_settings );
-
-    // Get the roles of the current user.
+	// Get the roles of the current user.
 	$current_user = wp_get_current_user();
-    $user_roles   = $current_user->roles;
+	$user_roles   = $current_user->roles;
 
-    // If the current user is an administrator, enable color settings.
-    if ( in_array( 'administrator', $user_roles ) ) {
-        $administrator_settings = array(
-            'version'  => 2,
-            'settings' => array(
-                'color' => array(
-                    'text'       => true,
-                    'background' => true,
-                    'link'       => true,
-                ),
-            ),
-        );
+	// If the current user is an administrator, enable color settings.
+	if ( in_array( 'administrator', $user_roles, true ) ) {
+		$administrator_settings = array(
+			'version'  => 2,
+			'settings' => array(
+				'color' => array(
+					'text'       => true,
+					'background' => true,
+					'link'       => true,
+				),
+			),
+		);
 
-        $theme_json->update_with( $administrator_settings );
-    }
+		$theme_json->update_with( $administrator_settings );
+	}
 
-    // Return the modified theme JSON data.
-    return $theme_json;
+	// Return the modified theme JSON data.
+	return $theme_json;
 }
 
 // For the filter to work properly, it must be run after theme setup.
