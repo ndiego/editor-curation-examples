@@ -1,16 +1,16 @@
 <?php
 
 /**
- * This function modifies the theme JSON data disabling all color settings
- * and then enabling settings for Administrators.
+ * This function modifies the theme JSON data by disabling color settings
+ * for all users and then specifically enabling settings for Administrators.
  *
  * @param object $theme_json The original theme JSON data.
  * @return object The modified theme JSON data.
  */
-function enable_color_settings_for_administrators( $theme_json ) {
-    
-	// First disable color settings for everyone.
-	// This will override any theme settings.
+function restrict_color_settings_to_administrators( $theme_json ) {
+
+	// First disable color settings for everyone. This will override
+	// any settings that might have been supplied by the theme.
 	$default_settings = array(
 		'version'  => 2,
 		'settings' => array(
@@ -53,7 +53,7 @@ function apply_theme_json_user_filters() {
 
 	// Check to make sure the theme has a theme.json file.
 	if ( wp_theme_has_theme_json() ) {
-		add_filter( 'wp_theme_json_data_theme', __NAMESPACE__ . '\enable_color_settings_for_administrators' );
+		add_filter( 'wp_theme_json_data_theme', __NAMESPACE__ . '\restrict_color_settings_to_administrators' );
 	}
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\apply_theme_json_user_filters' );

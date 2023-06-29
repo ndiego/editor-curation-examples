@@ -1,7 +1,7 @@
 <?php
 /**
- * This function modifies the theme JSON data by updating the theme's color palette
- * based on the user's login status.
+ * This function modifies the theme JSON data by updating the theme's color
+ * palette based on the user's logged in status.
  *
  * @param object $theme_json The original theme JSON data.
  * @return object The modified theme JSON data.
