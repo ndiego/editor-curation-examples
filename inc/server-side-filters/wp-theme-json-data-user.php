@@ -7,7 +7,7 @@
  * @param object $theme_json The original theme JSON data.
  * @return object The modified theme JSON data.
  */
-function restrict_color_settings_to_administrators( $theme_json ) {
+function ece_restrict_color_settings_to_administrators( $theme_json ) {
 
 	// First disable color settings for everyone. This will override
 	// any settings that might have been supplied by the theme.
@@ -49,11 +49,11 @@ function restrict_color_settings_to_administrators( $theme_json ) {
 }
 
 // For the filter to work properly, it must be run after theme setup.
-function apply_theme_json_user_filters() {
+function ece_apply_theme_json_user_filters() {
 
 	// Check to make sure the theme has a theme.json file.
 	if ( wp_theme_has_theme_json() ) {
-		add_filter( 'wp_theme_json_data_user', 'restrict_color_settings_to_administrators' );
+		add_filter( 'wp_theme_json_data_user', 'ece_restrict_color_settings_to_administrators' );
 	}
 }
-add_action( 'after_setup_theme', 'apply_theme_json_user_filters' );
+add_action( 'after_setup_theme', 'ece_apply_theme_json_user_filters' );

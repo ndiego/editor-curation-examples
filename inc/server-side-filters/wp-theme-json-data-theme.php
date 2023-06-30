@@ -6,7 +6,7 @@
  * @param object $theme_json The original theme JSON data.
  * @return object The modified theme JSON data.
  */
-function modify_color_palette_if_logged_in( $theme_json ) {
+function ece_modify_color_palette_if_logged_in( $theme_json ) {
 	if ( is_user_logged_in() ) {
 		$new_data = array(
 			'version'  => 2,
@@ -62,11 +62,11 @@ function modify_color_palette_if_logged_in( $theme_json ) {
 }
 
 // For the filter to work properly, it must be run after theme setup.
-function apply_theme_json_theme_filters() {
+function ece_apply_theme_json_theme_filters() {
 
 	// Check to make sure the theme has a theme.json file.
 	if ( wp_theme_has_theme_json() ) {
-		add_filter( 'wp_theme_json_data_theme', 'modify_color_palette_if_logged_in' );
+		add_filter( 'wp_theme_json_data_theme', 'ece_modify_color_palette_if_logged_in' );
 	}
 }
-add_action( 'after_setup_theme', 'apply_theme_json_theme_filters' );
+add_action( 'after_setup_theme', 'ece_apply_theme_json_theme_filters' );
