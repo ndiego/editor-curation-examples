@@ -3,11 +3,14 @@ import { addFilter } from '@wordpress/hooks';
 
 /**
  * Restrict the spacing options for Column blocks to pixels.
+ * 
+ * @see https://developer.wordpress.org/news/2023/05/curating-the-editor-experience-with-client-side-filters/
  *
  * @param {any}    settingValue The current value of the block setting.
  * @param {string} settingName  The name of the block setting to modify.
  * @param {string} clientId     The unique identifier for the block in the client.
  * @param {string} blockName    The name of the block type.
+ * 
  * @return {any} Returns the modified setting value or the original setting value.
  */
 function restrictColumnSpacingSettings(
@@ -31,11 +34,14 @@ addFilter(
 /**
  * If a 'core/heading' is an H3-H6, disable most typography settings and
  * restrict the available font sizes.
+ * 
+ * @see https://developer.wordpress.org/news/2023/05/curating-the-editor-experience-with-client-side-filters/
  *
  * @param {any}    settingValue The current value of the block setting.
  * @param {string} settingName  The name of the block setting to modify.
  * @param {string} clientId     The unique identifier for the block in the client.
  * @param {string} blockName    The name of the block type.
+ * 
  * @return {any} Returns the modified setting value or the original setting value.
  */
 function restrictHeadingTypographySettings(
@@ -107,11 +113,14 @@ addFilter(
  * If the user doesn't have permission to update settings (Editors,
  * Authors, etc.), disable the specified block settings when editing
  * the specified post types.
+ * 
+ * @see https://developer.wordpress.org/news/2023/05/curating-the-editor-experience-with-client-side-filters/
  *
  * @param {any}    settingValue The current value of the block setting.
  * @param {string} settingName  The name of the block setting to modify.
  * @param {string} clientId     The unique identifier for the block in the client.
  * @param {string} blockName    The name of the block type.
+ * 
  * @return {any} Returns the modified setting value or the original setting value.
  */
 function restrictBlockSettingsByUserPermissionsAndPostType(
@@ -163,11 +172,14 @@ addFilter(
  * If a 'core/button' block is within a 'core/cover' block, update the
  * color palette to only include 'Base" and 'Contrast'. Also disable custom
  * colors and gradients.
+ * 
+ * @see https://developer.wordpress.org/news/2023/05/curating-the-editor-experience-with-client-side-filters/
  *
  * @param {any}    settingValue The current value of the block setting.
  * @param {string} settingName  The name of the block setting to modify.
  * @param {string} clientId     The unique identifier for the block in the client.
  * @param {string} blockName    The name of the block type.
+ * 
  * @return {any} Returns the modified setting value or the original setting value.
  */
 function restrictButtonBlockSettingsByLocation(
