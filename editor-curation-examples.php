@@ -16,15 +16,13 @@
  * @package editor-curation-examples
  */
 
-namespace EditorCurationExamples;
-
 /**
  * Enqueue plugin specific editor scripts
  *
  * @since 0.1.0
  */
-function enqueue_editor_scripts() {
-	$asset_file = get_asset_file( 'build/index' );
+function ece_enqueue_editor_scripts() {
+	$asset_file = ece_get_asset_file( 'build/index' );
 
 	wp_enqueue_script(
 		'editor-curation-examples-scripts',
@@ -33,7 +31,7 @@ function enqueue_editor_scripts() {
 		$asset_file['version']
 	);
 }
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_editor_scripts' );
+add_action( 'enqueue_block_editor_assets', 'ece_enqueue_editor_scripts' );
 
 
 /**
@@ -45,7 +43,7 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_editor_scri
  * @param string $filepath The name of the file without the extension.
  * @return array           The asset file contents.
  */
-function get_asset_file( $filepath ) {
+function ece_get_asset_file( $filepath ) {
 	$asset_path = dirname( __FILE__ ) . '/' . $filepath . '.asset.php';
 
 	return file_exists( $asset_path )
