@@ -53,7 +53,7 @@ function apply_theme_json_user_filters() {
 
 	// Check to make sure the theme has a theme.json file.
 	if ( wp_theme_has_theme_json() ) {
-		add_filter( 'wp_theme_json_data_user', __NAMESPACE__ . '\restrict_color_settings_to_administrators' );
+		add_filter( 'wp_theme_json_data_user', 'restrict_color_settings_to_administrators' );
 	}
 }
-add_action( 'after_setup_theme', __NAMESPACE__ . '\apply_theme_json_user_filters' );
+add_action( 'after_setup_theme', 'apply_theme_json_user_filters' );

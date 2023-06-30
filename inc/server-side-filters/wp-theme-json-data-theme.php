@@ -66,7 +66,7 @@ function apply_theme_json_theme_filters() {
 
 	// Check to make sure the theme has a theme.json file.
 	if ( wp_theme_has_theme_json() ) {
-		add_filter( 'wp_theme_json_data_theme', __NAMESPACE__ . '\modify_color_palette_if_logged_in' );
+		add_filter( 'wp_theme_json_data_theme', 'modify_color_palette_if_logged_in' );
 	}
 }
-add_action( 'after_setup_theme', __NAMESPACE__ . '\apply_theme_json_theme_filters' );
+add_action( 'after_setup_theme', 'apply_theme_json_theme_filters' );
