@@ -2,7 +2,8 @@
 
 /**
  * This function modifies the theme JSON data by disabling color settings
- * for all users and then specifically enabling settings for Administrators.
+ * for all users and then specifically enabling settings for users with the 
+ * capability to edit_theme_options (Administrators).
  *
  * @param object $theme_json The original theme JSON data.
  * @return object The modified theme JSON data.
@@ -24,12 +25,8 @@ function ece_restrict_color_settings_to_administrators( $theme_json ) {
 
 	$theme_json->update_with( $default_settings );
 
-	// Get the roles of the current user.
-	$current_user = wp_get_current_user();
-	$user_roles   = $current_user->roles;
-
-	// If the current user is an administrator, enable color settings.
-	if ( in_array( 'administrator', $user_roles, true ) ) {
+	// If the current user has the correct permissions, enable color settings.
+	if ( current_user_can( 'edit_theme_options' ) ) {
 		$administrator_settings = array(
 			'version'  => 2,
 			'settings' => array(
