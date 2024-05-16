@@ -67,7 +67,7 @@ function ece_register_featured_block_category( $categories ) {
     // Define the Featured category.
     $new_category = array(
         'slug'  => 'featured',
-        'title' => __( 'Featured', 'easy-plugin-stats' ),
+        'title' => __( 'Featured', 'editor-curation-examples' ),
         'icon'  => null,
     );
 

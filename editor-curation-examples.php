@@ -4,7 +4,7 @@
  * Plugin URI:          
  * Description:         A collection of Editor curation examples.
  * Version:             0.1.0
- * Requires at least:   6.2
+ * Requires at least:   6.3
  * Requires PHP:        7.0
  * Author:              Nick Diego
  * Author URI:          https://www.nickdiego.com
@@ -18,8 +18,6 @@
 
 /**
  * Enqueue plugin specific editor scripts
- *
- * @since 0.1.0
  */
 function ece_enqueue_editor_scripts() {
 	$asset_file = ece_get_asset_file( 'build/index' );
@@ -33,12 +31,9 @@ function ece_enqueue_editor_scripts() {
 }
 add_action( 'enqueue_block_editor_assets', 'ece_enqueue_editor_scripts' );
 
-
 /**
  * Loads the asset file for the given script or style.
  * Returns a default if the asset file is not found.
- *
- * @since 0.1.0
  *
  * @param string $filepath The name of the file without the extension.
  * @return array           The asset file contents.
@@ -54,6 +49,7 @@ function ece_get_asset_file( $filepath ) {
 		);
 }
 
+// Require plugin files.
 include_once( plugin_dir_path( __FILE__ ) . 'includes/theme-json-filters/wp-theme-json-data-theme.php' );
 include_once( plugin_dir_path( __FILE__ ) . 'includes/theme-json-filters/wp-theme-json-data-user.php' );
 include_once( plugin_dir_path( __FILE__ ) . 'includes/block-filters/block_type_metadata.php' );
