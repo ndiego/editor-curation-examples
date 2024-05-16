@@ -54,5 +54,6 @@ function ece_get_asset_file( $filepath ) {
 		);
 }
 
-include_once( plugin_dir_path( __FILE__ ) . 'inc/server-side-filters/wp-theme-json-data-theme.php' );
-include_once( plugin_dir_path( __FILE__ ) . 'inc/server-side-filters/wp-theme-json-data-user.php' );
+include_once( plugin_dir_path( __FILE__ ) . 'includes/theme-json-filters/wp-theme-json-data-theme.php' );
+include_once( plugin_dir_path( __FILE__ ) . 'includes/theme-json-filters/wp-theme-json-data-user.php' );
+include_once( plugin_dir_path( __FILE__ ) . 'includes/block-filters/block_type_metadata.php' );
