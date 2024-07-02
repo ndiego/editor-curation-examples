@@ -22,11 +22,17 @@ wp.plugins.registerPlugin( 'editor-curation-examples-notes-demo', {
 			wp.blocks.unregisterBlockStyle( 'core/heading', [ 'default', 'asterisk' ] );
 
 			// Disable specific RichText formatting options.
-			wp.richText.unregisterFormatType( 'core/image' );
-			wp.richText.unregisterFormatType( 'core/language' );
-			wp.richText.unregisterFormatType( 'core/keyboard' );
-			wp.richText.unregisterFormatType( 'core/subscript' );
-			wp.richText.unregisterFormatType( 'core/superscript' );
+			const formatsToUnregister = [
+				'core/image',
+				'core/language',
+				'core/keyboard',
+				'core/subscript',
+				'core/superscript'
+			];
+		
+			formatsToUnregister.forEach( function( format ) {
+				wp.richText.unregisterFormatType( format );
+			} );
         }
     
         return null;
