@@ -6,7 +6,11 @@
  */
 
 // Globally disable the Pattern Directory.
-add_filter( 'should_load_remote_block_patterns', '__return_false' );
+if ( ece_is_example_enabled( 'ece-misc-disable-pattern-directory' ) ) {
+    add_filter( 'should_load_remote_block_patterns', '__return_false' );
+}
 
 // Globally disable the Block Directory.
-remove_action( 'enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets' );
+if ( ece_is_example_enabled( 'ce-misc-disable-block-directory' ) ) {
+    remove_action( 'enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets' );
+}

@@ -1,17 +1,37 @@
 /**
- * WordPress dependencies
+ * Plugin to customize the block editor for the 'note' post type in the Editor Curation Examples demo.
+ *
+ * This plugin conditionally unregisters specific block styles for the 'note' post type when the 
+ * global `enableNotesDemo` flag is enabled. It ensures that the current post type is 'note' 
+ * and that the necessary values are defined before unregistering the block styles.
+ *
+ * @return null We don't actually render anything.
  */
-import domReady from '@wordpress/dom-ready';
-import { unregisterBlockStyle } from '@wordpress/blocks';
+wp.plugins.registerPlugin( 'editor-curation-examples-notes-demo', {
+	render: () => {
 
-domReady( function () {
-	// Only execute if the Notes Demo is enabled and you are editing a 'note'.
-	if ( window.enableNotesDemo && 'note' === pagenow ) {
-		// Provided by Core.
-		unregisterBlockStyle( 'core/image', [ 'default', 'rounded' ] );
+        if ( ! window.enableNotesDemo ) {
+            return null;
+        }
 
-		// Provided by Twenty Twenty-Four.
-		unregisterBlockStyle( 'core/list', [ 'default', 'checkmark' ] );
-		unregisterBlockStyle( 'core/heading', [ 'default', 'asterisk' ] );
-	}
+        // Get the current post type.
+        const currentPostType = wp.data.select( 'core/editor' ).getCurrentPostType();
+        
+        // Ensure the values are actually defined.
+        if ( canUserUpdateSettings === undefined || currentPostType === undefined ) {
+            return null;
+        }
+
+        // Unregister block styles if the current post type is 'note'.
+        if ( currentPostType === 'note' ) {
+			// Provided by Core.
+			unregisterBlockStyle( 'core/image', [ 'default', 'rounded' ] );
+
+			// Provided by Twenty Twenty-Four.
+			unregisterBlockStyle( 'core/list', [ 'default', 'checkmark' ] );
+			unregisterBlockStyle( 'core/heading', [ 'default', 'asterisk' ] );
+        }
+    
+        return null;
+    },
 } );

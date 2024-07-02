@@ -29,6 +29,7 @@ function ece_render_settings_page() {
 		class="wrap"
 	>
 	<h1><?php echo __( 'Editor curation examples', 'editor-curation-examples' ); ?></h1>
+	<p><?php echo __( 'A collection of examples that demonstrate different ways you can curate the editing experience in WordPress. Click on "View source code" to see how each work.', 'editor-curation-examples' ); ?></p>
 	<form method="post" action="options.php">
 		<?php settings_fields( 'editor-curation-examples' ); ?>
 		<?php do_settings_sections( 'editor-curation-examples' ); ?>
@@ -44,19 +45,44 @@ function ece_render_settings_page() {
 function ece_register_settings() {
 
 	add_settings_section(
-		'editor_curation_examples_section',
-		// The empty string ensures the render function won't output a h2.
-		'',
-		'editor_curation_examples_display_section',
+		'editor_curation_examples_demos',
+		__( 'Curation demos', 'editor-curation-examples' ),
+		function() { 
+			echo __( 'Complete demos that combine various curation techniques.', 'editor-curation-examples' ); 
+		},
+		'editor-curation-examples'
+	);
+
+	add_settings_field(
+		'ece-notes-demo',
+		__( 'Notes demo', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_demos',
+		array(
+			'label' => sprintf(
+				__( 'Enable the "Notes" post type, which demonstrates a highly curated editing experience for this specific custom post type. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/includes/examples/notes-demo' )
+			),
+			'id'    => 'ece-notes-demo',
+		)
+	);
+
+	add_settings_section(
+		'editor_curation_examples_block_filters',
+		__( 'Block filters', 'editor-curation-examples' ),
+		function() { 
+			echo __( 'Filters that modify block attributes, supports, etc.', 'editor-curation-examples' ); 
+		},
 		'editor-curation-examples'
 	);
 
 	add_settings_field(
 		'ece-block-filters-php',
-		__( 'Block Filters (PHP)', 'editor-curation-examples' ),
+		__( 'Block filters (PHP)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
-		'editor_curation_examples_section',
+		'editor_curation_examples_block_filters',
 		array(
 			'label' => sprintf(
 				__( 'Enable PHP block filters. Examples use the <code>block_type_metadata</code> and <code>register_block_type_args</code> filters. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
@@ -67,11 +93,35 @@ function ece_register_settings() {
 	);
 
 	add_settings_field(
-		'ece-editor-filters-php',
-		__( 'Editor Filters (PHP)', 'editor-curation-examples' ),
+		'ece-block-filters-js',
+		__( 'Block filters (JS)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
-		'editor_curation_examples_section',
+		'editor_curation_examples_block_filters',
+		array(
+			'label' => sprintf(
+				__( 'Enable JavaScript block filters. Examples use the <code>bblocks.registerBlockType</code> filter. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/block-filters' )
+			),
+			'id'    => 'ece-block-filters-js',
+		)
+	);
+
+	add_settings_section(
+		'editor_curation_examples_editor_filters',
+		__( 'Editor filters', 'editor-curation-examples' ),
+		function() { 
+			echo __( 'Filters that modify Editor settings and functionality.', 'editor-curation-examples' ); 
+		},
+		'editor-curation-examples'
+	);
+
+	add_settings_field(
+		'ece-editor-filters-php',
+		__( 'Editor filters (PHP)', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_editor_filters',
 		array(
 			'label' => sprintf(
 				__( 'Enable PHP editor filters. Examples use the <code>block_editor_settings_all</code> filter. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
@@ -82,56 +132,11 @@ function ece_register_settings() {
 	);
 
 	add_settings_field(
-		'ece-global-styles-filters-php',
-		__( 'Global Styles Filters (PHP)', 'editor-curation-examples' ),
-		'ece_display_example_field',
-		'editor-curation-examples',
-		'editor_curation_examples_section',
-		array(
-			'label' => sprintf(
-				__( 'Enable PHP theme.json filters. Examples use the <code>wp_theme_json_data_theme</code> and <code>wp_theme_json_data_user</code> filters. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
-				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/includes/examples/global-styles-filters' )
-			),
-			'id'    => 'ece-global-styles-filters-php',
-		)
-	);
-
-	add_settings_field(
-		'ece-misc-curations-php',
-		__( 'Misc Curations (PHP)', 'editor-curation-examples' ),
-		'ece_display_example_field',
-		'editor-curation-examples',
-		'editor_curation_examples_section',
-		array(
-			'label' => sprintf(
-				__( 'Enable miscellaneous PHP curation techniques. Examples include disabling the Block Directory, Pattern Directory, and more. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
-				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/misc-curations' )
-			),
-			'id'    => 'ece-misc-curations-php',
-		)
-	);
-
-	add_settings_field(
-		'ece-block-filters-js',
-		__( 'Block Filters (JavaScript)', 'editor-curation-examples' ),
-		'ece_display_example_field',
-		'editor-curation-examples',
-		'editor_curation_examples_section',
-		array(
-			'label' => sprintf(
-				__( 'Enable JavaScript block filters. Examples use the <code>bblocks.registerBlockType</code> filter. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
-				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/block-filters' )
-			),
-			'id'    => 'ece-block-filters-js',
-		)
-	);
-
-	add_settings_field(
 		'ece-editor-filters-js',
-		__( 'Editor Filters (JavaScript)', 'editor-curation-examples' ),
+		__( 'Editor filters (JS)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
-		'editor_curation_examples_section',
+		'editor_curation_examples_editor_filters',
 		array(
 			'label' => sprintf(
 				__( 'Enable JavaScript editor filters. Examples use the <code>blockEditor.useSetting.before</code> filter. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
@@ -141,35 +146,180 @@ function ece_register_settings() {
 		)
 	);
 
+	add_settings_section(
+		'editor_curation_examples_global_styles_filters',
+		__( 'Global Styles filters', 'editor-curation-examples' ),
+		function() { 
+			echo __( 'Filters that allow you to modify theme.json data.', 'editor-curation-examples' ); 
+		},
+		'editor-curation-examples'
+	);
+
 	add_settings_field(
-		'ece-misc-curations-js',
-		__( 'Misc Curations (JavaScript)', 'editor-curation-examples' ),
+		'ece-global-styles-filters-php',
+		__( 'Global Styles filters (PHP)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
-		'editor_curation_examples_section',
+		'editor_curation_examples_global_styles_filters',
 		array(
 			'label' => sprintf(
-				__( 'Enable miscellaneous JavaScript curation techniques. Examples include disabling block types, block styles, block variations, and more. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
-				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/misc-curations.js' )
+				__( 'Enable PHP theme.json filters. Examples use the <code>wp_theme_json_data_theme</code> and <code>wp_theme_json_data_user</code> filters. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/includes/examples/global-styles-filters' )
 			),
-			'id'    => 'ece-misc-curations-js',
+			'id'    => 'ece-global-styles-filters-php',
+		)
+	);
+
+	add_settings_section(
+		'editor_curation_examples_disable_blocks',
+		__( 'Disable blocks', 'editor-curation-examples' ),
+		function() { 
+			echo __( 'Disable blocks in the Editor using different methods. For best results, only enable one at a time.', 'editor-curation-examples' ); 
+		},
+		'editor-curation-examples'
+	);
+
+	add_settings_field(
+		'ece-disable-blocks-allow-list-global-php',
+		__( 'Global allow list (PHP)', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_disable_blocks',
+		array(
+			'label' => sprintf(
+				__( 'Disable block globally using an allow list in PHP. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/includes/examples/disable-blocks/allow-list.php' )
+			),
+			'id'    => 'ece-disable-blocks-allow-list-global-php',
 		)
 	);
 
 	add_settings_field(
-		'ece-notes-demo',
-		__( 'Notes Demo', 'editor-curation-examples' ),
+		'ece-disable-blocks-allow-list-local-php',
+		__( 'Local allow list (PHP)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
-		'editor_curation_examples_section',
+		'editor_curation_examples_disable_blocks',
 		array(
 			'label' => sprintf(
-				__( 'Enable the "Notes" post type, which demonstrates a highly curated editing experience for this specific custom post type. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
-				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/includes/examples/notes-demo' )
+				__( 'Disable block for specific users and post types using an allow list in PHP. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/includes/examples/disable-blocks/allow-list.php' )
 			),
-			'id'    => 'ece-notes-demo',
+			'id'    => 'ece-disable-blocks-allow-list-local-php',
 		)
 	);
+
+	add_settings_field(
+		'ece-disable-blocks-disallow-list-local-php',
+		__( 'Local disallow list (PHP)', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_disable_blocks',
+		array(
+			'label' => sprintf(
+				__( 'Disable block for specific users and post types using a disallow list in PHP. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/includes/examples/disable-blocks/allow-list.php' )
+			),
+			'id'    => 'ece-disable-blocks-disallow-list-local-php',
+		)
+	);
+
+	add_settings_field(
+		'ece-disable-blocks-allow-list-global-js',
+		__( 'Global allow list (JS)', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_disable_blocks',
+		array(
+			'label' => sprintf(
+				__( 'Disable block globally using an allow list in JavaScript. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/disable-blocks/allow-list.js' )
+			),
+			'id'    => 'ece-disable-blocks-allow-list-global-js',
+		)
+	);
+
+	add_settings_field(
+		'ece-disable-blocks-allow-list-local-js',
+		__( 'Local allow list (JS)', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_disable_blocks',
+		array(
+			'label' => sprintf(
+				__( 'Disable block for specific users and post types using an allow list in JavaScript. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/disable-blocks/allow-list.js' )
+			),
+			'id'    => 'ece-disable-blocks-allow-list-local-js',
+		)
+	);
+
+	add_settings_field(
+		'ece-disable-blocks-disallow-list-local-js',
+		__( 'Local disallow list (JS)', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_disable_blocks',
+		array(
+			'label' => sprintf(
+				__( 'Disable block for specific users and post types using a disallow list in JavaScript. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/disable-blocks/allow-list.js' )
+			),
+			'id'    => 'ece-disable-blocks-disallow-list-local-js',
+		)
+	);
+
+	add_settings_section(
+		'editor_curation_examples_misc',
+		__( 'Miscellaneous', 'editor-curation-examples' ),
+		null,
+		'editor-curation-examples'
+	);
+
+	add_settings_field(
+		'ece-misc-disable-block-directory',
+		__( 'Block Directory (PHP)', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_misc',
+		array(
+			'label' => sprintf(
+				__( 'Globally disable the Block Directory. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/misc-curations.php' )
+			),
+			'id'    => 'ece-misc-disable-block-directory',
+		)
+	);
+
+	add_settings_field(
+		'ece-misc-disable-pattern-directory',
+		__( 'Pattern Directory (PHP)', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_misc',
+		array(
+			'label' => sprintf(
+				__( 'Globally disable the Pattern Directory. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/misc-curations.php' )
+			),
+			'id'    => 'ece-misc-disable-pattern-directory',
+		)
+	);
+
+	// add_settings_field(
+	// 	'ece-misc-curations-js',
+	// 	__( 'Misc curations (JS)', 'editor-curation-examples' ),
+	// 	'ece_display_example_field',
+	// 	'editor-curation-examples',
+	// 	'editor_curation_examples_misc',
+	// 	array(
+	// 		'label' => sprintf(
+	// 			__( 'Enable miscellaneous JavaScript curation techniques. Examples include disabling block types, block styles, block variations, and more. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+	// 			esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/misc-curations.js' )
+	// 		),
+	// 		'id'    => 'ece-misc-curations-js',
+	// 	)
+	// );
 
 	register_setting( 'editor-curation-examples', 'editor-curation-examples' );
 }
