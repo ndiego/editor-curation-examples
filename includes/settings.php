@@ -98,13 +98,13 @@ function ece_register_settings() {
 
 	add_settings_field(
 		'ece-misc-curations-php',
-		__( 'Misc Curations (php)', 'editor-curation-examples' ),
+		__( 'Misc Curations (PHP)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
 		'editor_curation_examples_section',
 		array(
 			'label' => sprintf(
-				__( 'Enable PHP miscellaneous curation techniques. Examples include disabling the Block Directory, Pattern Directory, and more. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				__( 'Enable miscellaneous PHP curation techniques. Examples include disabling the Block Directory, Pattern Directory, and more. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
 				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/misc-curations' )
 			),
 			'id'    => 'ece-misc-curations-php',
@@ -113,13 +113,13 @@ function ece_register_settings() {
 
 	add_settings_field(
 		'ece-block-filters-js',
-		__( 'Block Filters (JS)', 'editor-curation-examples' ),
+		__( 'Block Filters (JavaScript)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
 		'editor_curation_examples_section',
 		array(
 			'label' => sprintf(
-				__( 'Enable JS block filters. Examples use the <code>bblocks.registerBlockType</code> filter. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				__( 'Enable JavaScript block filters. Examples use the <code>bblocks.registerBlockType</code> filter. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
 				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/block-filters' )
 			),
 			'id'    => 'ece-block-filters-js',
@@ -128,13 +128,13 @@ function ece_register_settings() {
 
 	add_settings_field(
 		'ece-editor-filters-js',
-		__( 'Editor Filters (JS)', 'editor-curation-examples' ),
+		__( 'Editor Filters (JavaScript)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
 		'editor_curation_examples_section',
 		array(
 			'label' => sprintf(
-				__( 'Enable JS editor filters. Examples use the <code>blockEditor.useSetting.before</code> filter. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				__( 'Enable JavaScript editor filters. Examples use the <code>blockEditor.useSetting.before</code> filter. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
 				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/editor-filters' )
 			),
 			'id'    => 'ece-editor-filters-js',
@@ -143,13 +143,13 @@ function ece_register_settings() {
 
 	add_settings_field(
 		'ece-misc-curations-js',
-		__( 'Misc Curations (JS)', 'editor-curation-examples' ),
+		__( 'Misc Curations (JavaScript)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
 		'editor_curation_examples_section',
 		array(
 			'label' => sprintf(
-				__( 'Enable JS miscellaneous curation techniques. Examples include disabling block types, block styles, block variations, and more. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				__( 'Enable miscellaneous JavaScript curation techniques. Examples include disabling block types, block styles, block variations, and more. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
 				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/misc-curations.js' )
 			),
 			'id'    => 'ece-misc-curations-js',
