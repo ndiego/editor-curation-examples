@@ -222,7 +222,12 @@ function ece_get_post_type() {
 	// Check if the post ID is set in the query parameters and get the post type.
 	if ( isset( $_GET['post'] ) ) {
 		$post_type = get_post_type( absint( $_GET['post'] ) );
+	} elseif ( isset( $_GET['post_type'] ) ) {
+
+		// Check if the post type is directly set in the query parameters, which is the case when you first create a new post.
+		$post_type = sanitize_text_field( $_GET['post_type'] );
 	} elseif ( isset( $_GET['postType'] ) ) {
+		
 		// Check if the post type is directly set in the query parameters, which is the case in the Site Editor.
 		$post_type = sanitize_text_field( $_GET['postType'] );
 	}
