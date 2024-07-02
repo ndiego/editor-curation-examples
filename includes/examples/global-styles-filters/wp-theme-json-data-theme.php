@@ -1,5 +1,13 @@
 <?php
 /**
+ * Add curation examples the utilize 'wp_theme_json_data_theme' filter.
+ * 
+ * @see https://developer.wordpress.org/reference/hooks/wp_theme_json_data_theme/
+ *
+ * @package EditorCurationExamples
+ */
+
+/**
  * This function modifies the theme JSON data by updating the theme's color
  * palette based on the user's login status.
  *
@@ -90,7 +98,9 @@ function ece_create_breakpoint_variables( $theme_json ) {
 	return $theme_json->update_with( $new_data );
 }
 
-// For the filter to work properly, it must be run after theme setup.
+/**
+ * For the filter to work properly, it must be run after theme setup. 
+ */ 
 function ece_apply_theme_json_theme_filters() {
 
 	// Check to make sure the theme has a theme.json file.

@@ -1,4 +1,11 @@
 <?php
+/**
+ * Add curation examples the utilize 'wp_theme_json_data_user' filter.
+ * 
+ * @see https://developer.wordpress.org/reference/hooks/wp_theme_json_data_user/
+ *
+ * @package EditorCurationExamples
+ */
 
 /**
  * This function modifies the theme JSON data by disabling color settings
@@ -45,7 +52,9 @@ function ece_restrict_color_settings_to_administrators( $theme_json ) {
 	return $theme_json;
 }
 
-// For the filter to work properly, it must be run after theme setup.
+/**
+ * For the filter to work properly, it must be run after theme setup.
+ */
 function ece_apply_theme_json_user_filters() {
 
 	// Check to make sure the theme has a theme.json file.

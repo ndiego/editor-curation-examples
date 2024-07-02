@@ -1,0 +1,38 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/wp-admin/options-general.php?page=editor-curation-examples",
+	"login": true,
+	"features": {
+		"networking": true
+	},
+	"steps": [
+		{
+			"step": "updateUserMeta",
+			"meta": {
+				"admin_color": "modern",
+				"show_welcome_panel": 0
+			},
+			"userId": 1
+		},
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"blogname": "Editor Curation Examples"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginZipFile": {
+				"resource": "url",
+				"url": "https://github-proxy.com/proxy/?repo=ndiego/editor-curation-examples&branch=main"
+			}
+		},
+		{
+			"step": "installTheme",
+			"themeZipFile": {
+				"resource": "wordpress.org/themes",
+				"slug": "twentytwentyfour"
+			}
+		}
+	]
+}

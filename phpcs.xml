@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<ruleset name="EasyPluginStats">
+	<description>Rules for Editor Curation Examples</description>
+
+    <arg name="extensions" value="php" />
+    <arg name="basepath" value="./" />
+    <file>./</file>
+
+    <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>*/dist/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/wordpress*/*</exclude-pattern>
+    <exclude-pattern>*/\.*</exclude-pattern>
+
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<!-- Let's also check that everything is properly documented. -->
+	<rule ref="WordPress-Docs"/>
+
+	<!-- Add in some extra rules from other standards. -->
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+	<rule ref="Generic.Commenting.Todo"/>
+
+	<!-- Check for PHP cross-version compatibility. -->
+	<config name="testVersion" value="8.0-"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!--
+	To get the optimal benefits of using WPCS, we should add a couple of
+	custom properties. Adjust the values of these properties to fit our needs.
+	For information on additional custom properties available, check out
+	the wiki:
+	https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties
+	-->
+	<config name="minimum_supported_wp_version" value="6.3.0"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" value="editor-curation-examples"/>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="ece"/>
+				<element value="EditorCurationExamples"/>
+				<element value="Editor_Curation_Examples"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!--
+	Prevent errors caused by WordPress Coding Standards not supporting PHP 8.0+.
+	See https://github.com/WordPress/WordPress-Coding-Standards/issues/2035
+	-->
+	<ini name="error_reporting" value="E_ALL &#38; ~E_DEPRECATED" />
+</ruleset>

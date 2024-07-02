@@ -1,7 +1,7 @@
 {
-	"name": "block-governance-examples",
+	"name": "editor-curation-examples",
 	"version": "0.1.0",
-	"description": "A collection of block governance examples.",
+	"description": "A collection of Editor curation examples.",
 	"author": "Nick Diego",
 	"license": "GPL-2.0-or-later",
 	"scripts": {

@@ -1,16 +1,23 @@
+/**
+ * WordPress dependencies
+ */
 import { addFilter } from '@wordpress/hooks';
 
 /**
  * Adds border support to Column, Heading, and Paragraph blocks.
- * 
+ *
  * @see https://nickdiego.com/how-to-modify-block-supports-using-client-side-filters/
  *
  * @param {Object} settings - The original block settings.
- * @param {string} name - The name of the block.
+ * @param {string} name     - The name of the block.
  *
  * @return {Object} The modified block settings with added border support.
  */
 function addBorderSupport( settings, name ) {
+	// Bail if the examples are not enabled.
+	if ( ! window.enableBlockFilters ) {
+		return settings;
+	}
 
 	// Bail early if the block does not have supports.
 	if ( ! settings?.supports ) {
@@ -18,10 +25,10 @@ function addBorderSupport( settings, name ) {
 	}
 
 	// Only apply to Column, Heading, and Paragraph blocks.
-  	if (
+	if (
 		name === 'core/column' ||
 		name === 'core/heading' ||
-		name === 'core/paragraph' 
+		name === 'core/paragraph'
 	) {
 		return Object.assign( {}, settings, {
 			supports: Object.assign( settings.supports, {
@@ -35,7 +42,7 @@ function addBorderSupport( settings, name ) {
 						style: false,
 						width: false,
 						radius: false,
-					}
+					},
 				},
 			} ),
 		} );
@@ -47,19 +54,23 @@ function addBorderSupport( settings, name ) {
 addFilter(
 	'blocks.registerBlockType',
 	'modify-block-supports/add-border-support',
-	addBorderSupport,
+	addBorderSupport
 );
 
 /**
  * Modifies the default typography settings for blocks with typography support.
- * 
+ *
  * @see https://nickdiego.com/how-to-modify-block-supports-using-client-side-filters/
- * 
+ *
  * @param {Object} settings - The original block settings.
- * 
+ *
  * @return {Object} The modified block settings with updated typography defaults.
  */
 function modifyTypographyDefaults( settings ) {
+	// Bail if the examples are not enabled.
+	if ( ! window.enableBlockFilters ) {
+		return settings;
+	}
 
 	// Only apply to blocks with typography support.
 	if ( settings?.supports?.typography ) {
@@ -68,8 +79,8 @@ function modifyTypographyDefaults( settings ) {
 				typography: Object.assign( settings.supports.typography, {
 					__experimentalDefaultControls: {
 						fontAppearance: true,
-						fontSize: true
-					}
+						fontSize: true,
+					},
 				} ),
 			} ),
 		} );
@@ -81,5 +92,5 @@ function modifyTypographyDefaults( settings ) {
 addFilter(
 	'blocks.registerBlockType',
 	'modify-block-supports/modify-typography-defaults',
-	modifyTypographyDefaults,
+	modifyTypographyDefaults
 );
