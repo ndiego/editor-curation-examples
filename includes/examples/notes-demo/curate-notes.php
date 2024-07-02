@@ -172,6 +172,9 @@ function ece_remove_theme_patterns_and_block_directory() {
 	// Check if we are in the post editing screen and the post type is 'note'.
 	if ( 'note' === $screen->post_type ) {
 
+		// Remove access to the template editor. 
+		remove_theme_support( 'block-templates');
+
 		// Remove all theme patterns for Notes.
 		remove_theme_support( 'core-block-patterns' );
 
