@@ -342,15 +342,6 @@ function ece_display_example_field( $args ) {
 }
 
 /**
- * Display the experiments section.
- */
-function editor_curation_examples_display_section() {
-	?>
-	<p><?php echo __( 'Toggle the different Editor curation examples. Note that enabling multiple examples at once may cause conflicts.', 'editor-curation-examples' ); ?></p>
-	<?php
-}
-
-/**
  * Checks whether the Gutenberg experiment is enabled.
  *
  * @param string $name The name of the experiment.
