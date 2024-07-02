@@ -33,7 +33,7 @@ function ece_register_note_post_type() {
 		'public'       => true,
 		'show_in_rest' => true,
 		'hierarchical' => true,
-		'supports'     => array( 'title', 'editor', 'page-attributes' ),
+		'supports'     => array( 'title', 'editor' ),
 		// A List block will be inserted automatically for each new Note.
 		'template'     => array( array( 'core/list' ) ),
 	);
