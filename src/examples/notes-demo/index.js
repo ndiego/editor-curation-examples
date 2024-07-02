@@ -20,11 +20,11 @@ wp.plugins.registerPlugin( 'editor-curation-examples-notes-demo', {
         // Unregister block styles if the current post type is 'note'.
         if ( currentPostType === 'note' ) {
 			// Provided by Core.
-			unregisterBlockStyle( 'core/image', [ 'default', 'rounded' ] );
+			wp.blocks.unregisterBlockStyle( 'core/image', [ 'default', 'rounded' ] );
 
 			// Provided by Twenty Twenty-Four.
-			unregisterBlockStyle( 'core/list', [ 'default', 'checkmark' ] );
-			unregisterBlockStyle( 'core/heading', [ 'default', 'asterisk' ] );
+			wp.blocks.unregisterBlockStyle( 'core/list', [ 'default', 'checkmark' ] );
+			wp.blocks.unregisterBlockStyle( 'core/heading', [ 'default', 'asterisk' ] );
         }
     
         return null;
