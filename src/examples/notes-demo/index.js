@@ -1,10 +1,6 @@
 /**
  * Plugin to customize the block editor for the 'note' post type in the Editor Curation Examples demo.
  *
- * This plugin conditionally unregisters specific block styles for the 'note' post type when the 
- * global `enableNotesDemo` flag is enabled. It ensures that the current post type is 'note' 
- * and that the necessary values are defined before unregistering the block styles.
- *
  * @return null We don't actually render anything.
  */
 wp.plugins.registerPlugin( 'editor-curation-examples-notes-demo', {
@@ -17,14 +13,20 @@ wp.plugins.registerPlugin( 'editor-curation-examples-notes-demo', {
         // Get the current post type.
         const currentPostType = wp.data.select( 'core/editor' ).getCurrentPostType();
 
-        // Unregister block styles if the current post type is 'note'.
         if ( currentPostType === 'note' ) {
-			// Provided by Core.
+			// Unregister Core block styles.
 			wp.blocks.unregisterBlockStyle( 'core/image', [ 'default', 'rounded' ] );
 
-			// Provided by Twenty Twenty-Four.
+			// Unregister Twenty Twenty-Four block styles.
 			wp.blocks.unregisterBlockStyle( 'core/list', [ 'default', 'checkmark' ] );
 			wp.blocks.unregisterBlockStyle( 'core/heading', [ 'default', 'asterisk' ] );
+
+			// Disable specific RichText formatting options.
+			wp.richText.unregisterFormatType( 'core/image' );
+			wp.richText.unregisterFormatType( 'core/language' );
+			wp.richText.unregisterFormatType( 'core/keyboard' );
+			wp.richText.unregisterFormatType( 'core/subscript' );
+			wp.richText.unregisterFormatType( 'core/superscript' );
         }
     
         return null;
