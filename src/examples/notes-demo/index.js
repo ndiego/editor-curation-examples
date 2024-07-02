@@ -16,11 +16,6 @@ wp.plugins.registerPlugin( 'editor-curation-examples-notes-demo', {
 
         // Get the current post type.
         const currentPostType = wp.data.select( 'core/editor' ).getCurrentPostType();
-        
-        // Ensure the values are actually defined.
-        if ( canUserUpdateSettings === undefined || currentPostType === undefined ) {
-            return null;
-        }
 
         // Unregister block styles if the current post type is 'note'.
         if ( currentPostType === 'note' ) {
