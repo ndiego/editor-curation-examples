@@ -175,7 +175,7 @@ function ece_remove_theme_patterns_and_block_directory() {
 		// Remove access to the template editor. 
 		remove_theme_support( 'block-templates');
 
-		// Remove all theme patterns for Notes.
+		// Remove all core patterns for Notes.
 		remove_theme_support( 'core-block-patterns' );
 
 		// Disable the Block Directory for Notes.
