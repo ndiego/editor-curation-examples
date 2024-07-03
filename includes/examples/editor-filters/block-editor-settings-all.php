@@ -49,7 +49,7 @@ add_filter( 'block_editor_settings_all', 'ece_restrict_locking_ui_to_administrat
  * Disable Openverse.
  *
  * @param array $settings The current block editor settings.
- * @return array The modified block editor settings.
+ * @return array          The modified block editor settings.
  */
 function ece_disable_openverse( $settings ) {
 	$settings['enableOpenverseMediaCategory'] = false;
@@ -61,7 +61,7 @@ add_filter( 'block_editor_settings_all', 'ece_disable_openverse' );
  * Set the default image size to Full Size.
  *
  * @param array $settings The current block editor settings.
- * @return array The modified block editor settings.
+ * @return array          The modified block editor settings.
  */
 function ece_set_default_image_size_to_full( $settings ) {
 	$settings['imageDefaultSize'] = 'full';
@@ -74,7 +74,7 @@ add_filter( 'block_editor_settings_all', 'ece_set_default_image_size_to_full' );
  * for all blocks by default.
  *
  * @param array $settings The current block editor settings.
- * @return array The modified block editor settings.
+ * @return array          The modified block editor settings.
  */
 function ece_disable_inspector_tabs_by_default( $settings ) {
 	$settings['blockInspectorTabs'] = array( 'default' => false );
@@ -87,18 +87,21 @@ function ece_disable_inspector_tabs_by_default( $settings ) {
  * for the 'core/heading' and 'core/paragraph' blocks.
  *
  * @param array $settings The current block editor settings.
- * @return array The modified block editor settings.
+ * @return array          The modified block editor settings.
  */
 function ece_disable_inspector_tabs_for_specific_blocks( $settings ) {
-	if ( isset( $settings[ 'blockInspectorTabs' ] ) ) {
-		$settings['blockInspectorTabs'] = array_merge(
-			$settings[ 'blockInspectorTabs' ],
-			array( 
-				'core/heading'   => false,
-				'core/paragraph' => false,
-			),
-		);
+
+	if ( ! isset( $settings['blockInspectorTabs'] ) ) {
+		$settings['blockInspectorTabs'] = array();
 	}
+
+	$settings['blockInspectorTabs'] = array_merge(
+		$settings[ 'blockInspectorTabs' ],
+		array( 
+			'core/heading'   => false,
+			'core/paragraph' => false,
+		),
+	);
 
 	return $settings;
 }
