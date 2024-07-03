@@ -15,7 +15,7 @@ if ( ece_is_example_enabled( 'ece-block-filters-php' ) ) {
 }
 
 if ( ece_is_example_enabled( 'ece-editor-filters-php' ) ) {
-	include_once( plugin_dir_path( __FILE__ ) . 'examples/editor-filters/block_editor_settings_all.php' );
+	include_once( plugin_dir_path( __FILE__ ) . 'examples/editor-filters/block-editor-settings-all.php' );
 }
 
 if ( ece_is_example_enabled( 'ece-global-styles-filters-php' ) ) {
