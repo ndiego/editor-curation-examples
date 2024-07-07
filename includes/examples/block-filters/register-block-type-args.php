@@ -18,34 +18,16 @@ function ece_enable_duotone_to_media_text_blocks( $args, $block_type ) {
 	
 	// Only apply the filter to Media & Text blocks.
 	if ( 'core/media-text' !== $block_type ) {
-			return $args;
+		return $args;
 	}
 
-	if ( ! isset( $args['supports'] ) ) {
-		$args['supports'] = array();
-	}
+	$args['supports'] ??= [];
+	$args['supports']['filter'] ??= [];
+	$args['supports']['filter']['duotone'] = true;
 
-	if ( ! isset( $args['selectors'] ) ) {
-		$args['selectors'] = array();
-	}
-
-	$args['supports'] = array_merge(
-		$args['supports'],
-		array(
-			'filter' => array(
-				'duotone' => true,
-			),
-		)
-	);
-
-	$args['selectors'] = array_merge(
-		$args['selectors'],
-		array(
-			'filter' => array(
-				'duotone' => '.wp-block-media-text .wp-block-media-text__media',
-			),
-		)
-	);
+	$args['selectors'] ??= [];
+	$args['selectors']['filter'] ??= [];
+	$args['selectors']['filter']['duotone'] = '.wp-block-media-text .wp-block-media-text__media';
 
 	return $args;
 }
