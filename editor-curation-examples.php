@@ -26,7 +26,7 @@ function ece_enqueue_editor_scripts() {
     wp_enqueue_script(
         'editor-curation-examples-scripts',
         plugin_dir_url( __FILE__ ) . 'build/index.js',
-        array_merge( $asset_file['dependencies'], array( 'wp-edit-post' ) ),
+        array_merge( $asset_file['dependencies'], array( 'wp-edit-post', 'wp-blocks', 'wp-dom-ready' ) ),
         $asset_file['version']
     );
 
