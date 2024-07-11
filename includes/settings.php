@@ -79,7 +79,7 @@ function ece_register_settings() {
 
 	add_settings_field(
 		'ece-block-type-metadata',
-		__( '<code>block_type_metadata</code>', 'editor-curation-examples' ),
+		__( '<code>block_type_metadata</code>&nbsp;(PHP)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
 		'editor_curation_examples_block_filters',
@@ -94,7 +94,7 @@ function ece_register_settings() {
 
 	add_settings_field(
 		'ece-register-block-type-args',
-		__( '<code>register_block_type_args</code>', 'editor-curation-examples' ),
+		__( '<code>register_block_type_args</code>&nbsp;(PHP)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
 		'editor_curation_examples_block_filters',
@@ -109,7 +109,7 @@ function ece_register_settings() {
 
 	add_settings_field(
 		'ece-block-filters-js',
-		__( '<code>blocks.registerBlockType</code>', 'editor-curation-examples' ),
+		__( '<code>blocks.registerBlockType</code>&nbsp;(JS)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
 		'editor_curation_examples_block_filters',
@@ -133,7 +133,7 @@ function ece_register_settings() {
 
 	add_settings_field(
 		'ece-editor-filters-php',
-		__( '<code>block_editor_settings_all</code>', 'editor-curation-examples' ),
+		__( '<code>block_editor_settings_all</code>&nbsp;(PHP)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
 		'editor_curation_examples_editor_filters',
@@ -148,7 +148,7 @@ function ece_register_settings() {
 
 	add_settings_field(
 		'ece-editor-filters-js',
-		__( '<code>blockEditor.useSetting.before</code>', 'editor-curation-examples' ),
+		__( '<code>blockEditor.useSetting.before</code>&nbsp;(JS)', 'editor-curation-examples' ),
 		'ece_display_example_field',
 		'editor-curation-examples',
 		'editor_curation_examples_editor_filters',
