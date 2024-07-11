@@ -8,18 +8,17 @@
  */
 
 /**
- * Restrict access to the locking UI to Administrators and 
- * disable entirely on the "book" custom post type.
+ * Restrict access to the locking UI and the Code Editor on pages.
  * 
  * @param array                   $settings Default editor settings.
  * @param WP_Block_Editor_Context $context  The current block editor context.
  */
 function ece_restrict_locking_ui_with_context( $settings, $context ) {
-	$is_administrator = current_user_can( 'edit_theme_options' );
-	$is_book          = $context->post && 'book' === $context->post->post_type;
+	$is_page = $context->post && 'page' === $context->post->post_type;
 
-	if ( ! $is_administrator || $is_book ) {
-		$settings[ 'canLockBlocks' ] = false;
+	if ( $is_page ) {
+		$settings[ 'canLockBlocks' ]      = false;
+		$settings[ 'codeEditingEnabled' ] = false;
 	}
 
 	return $settings;
@@ -98,8 +97,8 @@ function ece_disable_inspector_tabs_for_specific_blocks( $settings ) {
 	$settings['blockInspectorTabs'] = array_merge(
 		$settings[ 'blockInspectorTabs' ],
 		array( 
-			'core/heading'   => false,
-			'core/paragraph' => false,
+			'core/button' => false,
+			'core/image'  => false,
 		),
 	);
 
