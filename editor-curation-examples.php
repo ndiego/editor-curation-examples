@@ -27,7 +27,8 @@ function ece_enqueue_editor_scripts() {
         'editor-curation-examples-scripts',
         plugin_dir_url( __FILE__ ) . 'build/index.js',
         array_merge( $asset_file['dependencies'], array( 'wp-edit-post', 'wp-blocks', 'wp-dom-ready' ) ),
-        $asset_file['version']
+        $asset_file['version'],
+        true // Print scripts in the footer. This is required for scripts to work correctly in the Site Editor.
     );
 
     wp_set_script_translations(

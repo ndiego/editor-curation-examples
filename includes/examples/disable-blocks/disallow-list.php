@@ -47,7 +47,7 @@ function ece_disallow_block_types( $allowed_block_types, $block_editor_context )
 			}
 		}
 
-		// Return the filtered list of allowed blocks
+		// Return the filtered list of allowed blocks.
 		return $filtered_blocks;
 	}
 	

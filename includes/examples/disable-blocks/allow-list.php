@@ -15,19 +15,20 @@
  *
  * @return array The array of allowed block types.
  */
-function example_allowed_block_types( $allowed_block_types, $block_editor_context ) {
+function ece_global_allowed_block_types( $allowed_block_types, $block_editor_context ) {
 
 	$allowed_block_types = array(
-		'core/heading',     // Heading block
-		'core/image',       // Image block
-		'core/list',        // List block
-		'core/paragraph',   // Paragraph block
+		'core/heading',     // Heading block.
+		'core/image',       // Image block.
+		'core/list',        // List block.
+		'core/list-item',   // List Item block.
+		'core/paragraph',   // Paragraph block.
 	);
 
 	return $allowed_block_types;
 }
 if ( ece_is_example_enabled( 'ece-disable-blocks-allow-list-global-php' ) ) {
-    add_filter( 'allowed_block_types_all', 'example_allowed_block_types', 10, 2 );
+    add_filter( 'allowed_block_types_all', 'ece_global_allowed_block_types', 10, 2 );
 }
 
 /**
@@ -51,10 +52,12 @@ function ece_allowed_block_types_when_editing_posts( $allowed_block_types, $bloc
 		'post' === $block_editor_context->post->post_type
 	) {
 		$allowed_block_types = array(
-			'core/heading',     // Heading block
-			'core/image',       // Image block
-			'core/list',        // List block
-			'core/paragraph',   // Paragraph block
+			'core/heading',
+			'core/image',
+			'core/list',
+			'core/list-item',
+			'core/paragraph',
+			'core/missing', // Displayed when a block type is no longer registered.
 		);
 
 		return $allowed_block_types;

@@ -58,6 +58,7 @@ function ece_curate_block_functionality_for_notes( $args, $block_type ) {
 		'core/list',
 		'core/list-item',
 		'core/code',
+		'core/missing', // Needed for when a post contains a block type that is no longer supported.
 	);
 	
 	// Only apply the filter to allowed blocks.

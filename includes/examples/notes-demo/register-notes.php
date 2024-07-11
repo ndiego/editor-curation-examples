@@ -34,14 +34,18 @@ function ece_register_note_post_type() {
 		'show_in_rest' => true,
 		'hierarchical' => true,
 		'supports'     => array( 'title', 'editor' ),
-		// A List block will be inserted automatically for each new Note.
-		'template'     => array( array( 'core/list' ) ),
 	);
 
+	if ( ece_is_example_enabled( 'ece-notes-demo' ) ) {
+		// A List block will be inserted automatically for each new Note.
+		$args['template'] = array( array( 'core/list' ) );
+	}
 
 	register_post_type( 'note', $args );
 }
 add_action( 'init', 'ece_register_note_post_type' );
 
-// Include curation functions.
-include_once( plugin_dir_path( __FILE__ ) . 'curate-notes.php' );
+// Include curation functions if demo is enabled.
+if ( ece_is_example_enabled( 'ece-notes-demo' ) ) {
+	include_once( plugin_dir_path( __FILE__ ) . 'curate-notes.php' );
+}
