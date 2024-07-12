@@ -2,7 +2,7 @@
  * Unregister Image block styles.
  */
 function unregisterImageBlockStyles() {
-	wp.blocks.unregisterBlockStyle( 'core/image', [ 'default', 'rounded' ] );
+	wp.blocks.unregisterBlockStyle( 'core/image', [ 'rounded' ] );
 }
 
 wp.domReady( () => {
