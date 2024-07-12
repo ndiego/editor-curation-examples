@@ -27,6 +27,7 @@ function ece_restrict_allowed_blocks_for_notes( $allowed_block_types, $context )
 			'core/list',
 			'core/list-item',
 			'core/code',
+			'core/missing', // Needed for when a post contains a block type that is no longer supported.
 		);
 	}
 
@@ -85,7 +86,7 @@ function ece_curate_block_functionality_for_notes( $args, $block_type ) {
 
 	// Disable spacing support.
 	$args['supports']['color'] = array(
-		'text' => false,
+		'text'       => false,
 		'background' => false,
 	);
 
