@@ -36,8 +36,8 @@ function ece_enable_js_examples() {
 		wp_add_inline_script( 'wp-block-editor', 'window.enableNotesDemo = true', 'before' );
 	}
 
-	if ( ece_is_example_enabled( 'ece-editor-filters-js' ) ) {
-		wp_add_inline_script( 'wp-block-editor', 'window.enableEditorFilters = true', 'before' );
+	if ( ece_is_example_enabled( 'ece-block-filters-js-use-setting-before' ) ) {
+		wp_add_inline_script( 'wp-block-editor', 'window.enableBlockFiltersUseSettingBefore = true', 'before' );
 	}
 
 	if ( ece_is_example_enabled( 'ece-block-filters-js' ) ) {

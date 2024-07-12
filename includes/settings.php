@@ -122,6 +122,21 @@ function ece_register_settings() {
 		)
 	);
 
+	add_settings_field(
+		'ece-block-filters-js-use-setting-before',
+		__( '<code>blockEditor.useSetting.before</code>&nbsp;(JS)', 'editor-curation-examples' ),
+		'ece_display_example_field',
+		'editor-curation-examples',
+		'editor_curation_examples_block_filters',
+		array(
+			'label' => sprintf(
+				__( 'Enable examples that use the JavaScript filter <code>blockEditor.useSetting.before</code>. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
+				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/block-filters/' )
+			),
+			'id'    => 'ece-block-filters-js-use-setting-before',
+		)
+	);
+
 	add_settings_section(
 		'editor_curation_examples_editor_filters',
 		__( 'Editor filters', 'editor-curation-examples' ),
@@ -143,21 +158,6 @@ function ece_register_settings() {
 				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/includes/examples/editor-filters' )
 			),
 			'id'    => 'ece-editor-filters-php',
-		)
-	);
-
-	add_settings_field(
-		'ece-editor-filters-js',
-		__( '<code>blockEditor.useSetting.before</code>&nbsp;(JS)', 'editor-curation-examples' ),
-		'ece_display_example_field',
-		'editor-curation-examples',
-		'editor_curation_examples_editor_filters',
-		array(
-			'label' => sprintf(
-				__( 'Enable examples that use the JavaScript filter <code>blockEditor.useSetting.before</code>. <a href="%s" target="_blank">View source code</a>.', 'editor-curation-examples' ),
-				esc_url( 'https://github.com/ndiego/editor-curation-examples/tree/main/src/examples/editor-filters' )
-			),
-			'id'    => 'ece-editor-filters-js',
 		)
 	);
 

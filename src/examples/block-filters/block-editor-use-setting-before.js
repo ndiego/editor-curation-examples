@@ -23,7 +23,7 @@ function restrictColumnSpacingSettings(
 	blockName
 ) {
 	// Bail if the examples are not enabled.
-	if ( ! window.enableEditorFilters ) {
+	if ( ! window.enableBlockFiltersUseSettingBefore ) {
 		return settingValue;
 	}
 
@@ -60,7 +60,7 @@ function restrictHeadingTypographySettings(
 	blockName
 ) {
 	// Bail if the examples are not enabled.
-	if ( ! window.enableEditorFilters ) {
+	if ( ! window.enableBlockFiltersUseSettingBefore ) {
 		return settingValue;
 	}
 
@@ -144,7 +144,7 @@ function restrictBlockSettingsByUserPermissionsAndPostType(
 	blockName // eslint-disable-line
 ) {
 	// Bail if the examples are not enabled.
-	if ( ! window.enableEditorFilters ) {
+	if ( ! window.enableBlockFiltersUseSettingBefore ) {
 		return settingValue;
 	}
 
@@ -208,7 +208,7 @@ function restrictButtonBlockSettingsByLocation(
 	blockName
 ) {
 	// Bail if the examples are not enabled.
-	if ( ! window.enableEditorFilters ) {
+	if ( ! window.enableBlockFiltersUseSettingBefore ) {
 		return settingValue;
 	}
 
