@@ -2,7 +2,7 @@
  * Globally restrict allowed blocks in the Editor.
  */
 function restrictAllowedBlocks() {
-	const allowedBlocks = [
+	const allowedBlocksTypes = [
 		'core/block',
 		'core/button',
 		'core/buttons',
@@ -16,13 +16,17 @@ function restrictAllowedBlocks() {
 		'core/image',
 		'core/list',
 		'core/list-item',
-		'core/missing', // Needed for when a post contains a block type that is no longer supported.
+		'core/missing', // Displayed when a block type is no longer registered.
 		'core/paragraph',
 		'core/spacer',
 	];
 
-	wp.blocks.getBlockTypes().forEach( function ( blockType ) {
-		if ( allowedBlocks.indexOf( blockType.name ) === -1 ) {
+	// Get all block types.
+	const allBlockTypes = wp.blocks.getBlockTypes();
+
+	// Unregister all blocks not in the allow list.
+	allBlockTypes.getBlockTypes().forEach( function ( blockType ) {
+		if ( allowedBlocksTypes.indexOf( blockType.name ) === -1 ) {
 			wp.blocks.unregisterBlockType( blockType.name );
 		}
 	} );
@@ -53,7 +57,7 @@ wp.plugins.registerPlugin(
 			}
 
 			// Restrict blocks to the following list.
-			const allowedBlocks = [
+			const allowedBlocksTypes = [
 				'core/block',
 				'core/button',
 				'core/buttons',
@@ -85,11 +89,14 @@ wp.plugins.registerPlugin(
 				return null;
 			}
 
+			// Get all block types.
+			const allBlockTypes = wp.blocks.getBlockTypes();
+
 			// Unregister all blocks but the allow list if the user is not an Administrator
 			// and the current post type is 'post'.
 			if ( ! canUserUpdateSettings && currentPostType === 'post' ) {
-				wp.blocks.getBlockTypes().forEach( function ( blockType ) {
-					if ( allowedBlocks.indexOf( blockType.name ) === -1 ) {
+				allBlockTypes.forEach( function( blockType ) {
+					if ( allowedBlocksTypes.indexOf( blockType.name ) === -1 ) {
 						wp.blocks.unregisterBlockType( blockType.name );
 					}
 				} );
